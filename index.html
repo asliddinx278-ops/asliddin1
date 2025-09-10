@@ -12,110 +12,208 @@
         }
         
         body {
-            font-family: Arial, sans-serif;
-            background: #f5f5f5;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
             padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
         .header {
             text-align: center;
             margin-bottom: 30px;
-            color: #333;
+            color: white;
+            padding: 20px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
         }
         
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
         }
         
         .product-card {
             background: white;
-            border-radius: 10px;
-            padding: 15px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
         }
         
         .product-image {
             width: 100%;
-            height: 150px;
-            background: #ddd;
-            border-radius: 8px;
-            margin-bottom: 10px;
+            height: 180px;
+            background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 10px;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #666;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
         }
         
         .product-name {
             font-weight: bold;
-            font-size: 18px;
-            margin-bottom: 5px;
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            color: #333;
         }
         
         .product-description {
             color: #666;
-            font-size: 14px;
-            margin-bottom: 10px;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            line-height: 1.4;
         }
         
         .product-price {
             font-weight: bold;
             color: #e74c3c;
-            font-size: 18px;
-            margin-bottom: 15px;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
         }
         
         .add-to-cart {
             width: 100%;
-            padding: 10px;
-            background: #3498db;
+            padding: 12px;
+            background: linear-gradient(45deg, #3498db, #2980b9);
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: background 0.3s ease;
         }
         
         .add-to-cart:hover {
-            background: #2980b9;
+            background: linear-gradient(45deg, #2980b9, #3498db);
         }
         
-        .cart-summary {
+        .cart-section {
             background: white;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-top: 30px;
+        }
+        
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .cart-total {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .cart-total span {
+            color: #e74c3c;
         }
         
         .order-btn {
             width: 100%;
             padding: 15px;
-            background: #27ae60;
+            background: linear-gradient(45deg, #27ae60, #2ecc71);
             color: white;
             border: none;
-            border-radius: 5px;
-            font-size: 18px;
-            margin-top: 15px;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: bold;
             cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .order-btn:hover {
+            background: linear-gradient(45deg, #219653, #27ae60);
+        }
+        
+        .order-btn:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+        }
+        
+        .cart-items {
+            margin-bottom: 20px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .empty-cart {
+            text-align: center;
+            color: #999;
+            padding: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>🍽 Kafe Menyusi</h1>
-        <p>Tanlang va buyurtma bering!</p>
-    </div>
-    
-    <div class="product-grid" id="products">
-        <!-- Mahsulotlar bu yerga dinamik ravishda qo'shiladi -->
-    </div>
-    
-    <div class="cart-summary">
-        <h3>🛒 Savatcha: <span id="cart-total">0</span> so'm</h3>
-        <button class="order-btn" onclick="placeOrder()">🛍 Buyurtma Berish</button>
+    <div class="container">
+        <div class="header">
+            <h1>🍽 Kafe Menyusi</h1>
+            <p>Tanlang va buyurtma bering - tez yetkazib beramiz!</p>
+        </div>
+        
+        <div class="product-grid" id="products">
+            <!-- Mahsulotlar bu yerga dinamik ravishda qo'shiladi -->
+        </div>
+        
+        <div class="cart-section">
+            <div class="cart-header">
+                <h2>🛒 Savatcha</h2>
+                <div class="cart-total">Jami: <span id="cart-total">0</span> so'm</div>
+            </div>
+            
+            <div class="cart-items" id="cart-items">
+                <div class="empty-cart">Savatcha bo'sh</div>
+            </div>
+            
+            <button class="order-btn" onclick="placeOrder()" id="order-btn" disabled>
+                🛍 Buyurtma Berish
+            </button>
+        </div>
     </div>
 
     <script>
@@ -123,37 +221,53 @@
         if (window.Telegram && window.Telegram.WebApp) {
             window.Telegram.WebApp.ready();
             window.Telegram.WebApp.expand();
+            window.Telegram.WebApp.setBackgroundColor('#667eea');
+            window.Telegram.WebApp.setHeaderColor('#667eea');
         }
 
         // Namuna mahsulotlari
         const products = [
             {
                 id: 1,
-                name: "Lavash",
-                description: "Go'shtli lavash, pomidor, bodring",
+                name: "Lavash Classic",
+                description: "Go'shtli lavash, pomidor, bodring, mayonez",
                 price: 25000,
-                image: "lavash.jpg"
+                image: "lavash"
             },
             {
                 id: 2,
-                name: "Gamburger",
-                description: "Qalampirli gamburger, chips",
-                price: 20000,
-                image: "burger.jpg"
+                name: "Cheeseburger",
+                description: "Mol go'shti, pishloq, chips, maxsus sous",
+                price: 28000,
+                image: "burger"
             },
             {
                 id: 3,
-                name: "Cola",
-                description: "1.5L ichimlik",
+                name: "Coca Cola",
+                description: "1.5L gazli ichimlik",
                 price: 12000,
-                image: "cola.jpg"
+                image: "cola"
             },
             {
                 id: 4,
-                name: "Choy",
-                description: "Qora choy",
+                name: "Qora Choy",
+                description: "Tabiiy qora choy",
                 price: 5000,
-                image: "tea.jpg"
+                image: "tea"
+            },
+            {
+                id: 5,
+                name: "Shirinlik Assorti",
+                description: "Napoleon, Medovik, Cheesecake",
+                price: 22000,
+                image: "dessert"
+            },
+            {
+                id: 6,
+                name: "Fri Kartoshka",
+                description: "Qovurilgan kartoshka, sous bilan",
+                price: 15000,
+                image: "fries"
             }
         ];
 
@@ -168,11 +282,11 @@
                 const card = document.createElement('div');
                 card.className = 'product-card';
                 card.innerHTML = `
-                    <div class="product-image">${product.name}</div>
+                    <div class="product-image">${product.image}</div>
                     <div class="product-name">${product.name}</div>
                     <div class="product-description">${product.description}</div>
                     <div class="product-price">${product.price.toLocaleString()} so'm</div>
-                    <button class="add-to-cart" onclick="addToCart(${product.id})">🛒 Savatga qo'shish</button>
+                    <button class="add-to-cart" onclick="addToCart(${product.id})">🛒 Qo'shish</button>
                 `;
                 container.appendChild(card);
             });
@@ -182,44 +296,103 @@
         function addToCart(productId) {
             const product = products.find(p => p.id === productId);
             if (product) {
-                cart.push(product);
-                updateCartTotal();
-                alert(`${product.name} savatchaga qo'shildi!`);
+                cart.push({...product});
+                updateCartDisplay();
+                showNotification(`${product.name} savatchaga qo'shildi!`);
             }
         }
 
-        // Savatcha jami summasini hisoblash
-        function updateCartTotal() {
+        // Savatchani yangilash
+        function updateCartDisplay() {
+            const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            const orderBtn = document.getElementById('order-btn');
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<div class="empty-cart">Savatcha bo\'sh</div>';
+                orderBtn.disabled = true;
+            } else {
+                cartItems.innerHTML = '';
+                cart.forEach((item, index) => {
+                    const cartItem = document.createElement('div');
+                    cartItem.className = 'cart-item';
+                    cartItem.innerHTML = `
+                        <span>${item.name}</span>
+                        <span>${item.price.toLocaleString()} so'm</span>
+                    `;
+                    cartItems.appendChild(cartItem);
+                });
+                orderBtn.disabled = false;
+            }
+            
             const total = cart.reduce((sum, item) => sum + item.price, 0);
-            document.getElementById('cart-total').textContent = total.toLocaleString();
+            cartTotal.textContent = total.toLocaleString();
+        }
+
+        // Bildirishnoma ko'rsatish
+        function showNotification(message) {
+            // Oddiy alert o'rniga chiroyli bildirishnoma
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #27ae60;
+                color: white;
+                padding: 15px 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+                z-index: 1000;
+                animation: slideIn 0.3s ease;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
         }
 
         // Buyurtma berish
         function placeOrder() {
             if (cart.length === 0) {
-                alert('Savatcha bo\'sh!');
+                showNotification('Savatcha bo\'sh!');
                 return;
             }
             
             const orderData = {
-                products: cart,
+                products: cart.map(item => ({name: item.name, price: item.price})),
                 total: cart.reduce((sum, item) => sum + item.price, 0),
-                timestamp: new Date().toISOString()
+                timestamp: new Date().toISOString(),
+                itemCount: cart.length
             };
             
             // Telegramga ma'lumot yuborish
             if (window.Telegram && window.Telegram.WebApp) {
-                window.Telegram.WebApp.sendData(JSON.stringify(orderData));
+                try {
+                    window.Telegram.WebApp.sendData(JSON.stringify(orderData));
+                    showNotification('✅ Buyurtmangiz qabul qilindi!');
+                    
+                    // Savatchani tozalash
+                    cart = [];
+                    updateCartDisplay();
+                    
+                } catch (error) {
+                    console.error('Xatolik:', error);
+                    showNotification('❌ Xatolik yuz berdi!');
+                }
+            } else {
+                // Test uchun
+                alert('Buyurtma ma\'lumotlari:\n' + JSON.stringify(orderData, null, 2));
+                cart = [];
+                updateCartDisplay();
             }
-            
-            alert('Buyurtmangiz qabul qilindi! Tez orada siz bilan bog\'lanamiz.');
-            cart = [];
-            updateCartTotal();
         }
 
         // Sahifa yuklanganda
         window.onload = function() {
             displayProducts();
+            updateCartDisplay();
         };
     </script>
 </body>
