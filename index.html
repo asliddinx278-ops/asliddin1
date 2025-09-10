@@ -3,149 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kafe Menyu - Web App</title>
+    <title>Kafe Menyu</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="app">
-        <!-- Header -->
         <header class="app-header">
             <h1>🍽 Kafe Menyusi</h1>
-            <p>Tanlang, poritsiyani belgilang va buyurtma bering!</p>
+            <p>Tanlang va buyurtma bering!</p>
         </header>
 
-        <!-- Navigation -->
         <nav class="app-nav">
             <button class="nav-btn active" onclick="showPage('menu')">Menyu</button>
-            <button class="nav-btn" onclick="showPage('cart')">Savatcha (<span id="cart-count">0</span>)</button>
+            <button class="nav-btn" onclick="showPage('cart')">Savatcha</button>
             <button class="nav-btn" onclick="showPage('orders')">Buyurtmalar</button>
         </nav>
 
-        <!-- Main Content -->
         <main class="app-main">
             <!-- Menu Page -->
             <div id="menu-page" class="page active">
-                <!-- Categories -->
                 <div class="categories-section">
                     <h2>📋 Kategoriyalar</h2>
                     <div class="categories-grid" id="categories-container">
                         <!-- Categories will be loaded here -->
                     </div>
                 </div>
-
-                <!-- Products -->
-                <div class="products-section">
-                    <h2 id="selected-category">Barcha Mahsulotlar</h2>
-                    <div class="products-grid" id="products-container">
-                        <!-- Products will be loaded here -->
-                    </div>
-                </div>
-            </div>
-
-            <!-- Cart Page -->
-            <div id="cart-page" class="page">
-                <h2>🛒 Savatcha</h2>
-                <div class="cart-items" id="cart-items">
-                    <div class="empty-cart">Savatcha bo'sh</div>
-                </div>
-                <div class="cart-summary">
-                    <div class="cart-total">
-                        <strong>Jami:</strong> <span id="cart-total">0</span> so'm
-                    </div>
-                    <button class="order-btn" onclick="showOrderForm()" id="order-btn" disabled>
-                        ✅ Buyurtma Berish
-                    </button>
-                </div>
-            </div>
-
-            <!-- Orders Page -->
-            <div id="orders-page" class="page">
-                <h2>📦 Buyurtmalarim</h2>
-                <div class="orders-list" id="orders-list">
-                    <div class="empty-orders">Hozircha buyurtmalar yo'q</div>
-                </div>
-            </div>
-
-            <!-- Order Form Page -->
-            <div id="order-form-page" class="page">
-                <h2>📝 Buyurtma Ma'lumotlari</h2>
-                <form id="order-form" class="order-form">
-                    <div class="form-group">
-                        <label for="customer-name">👤 Ism Sharif:</label>
-                        <input type="text" id="customer-name" placeholder="Ismingizni kiriting" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="customer-phone">📞 Telefon:</label>
-                        <input type="tel" id="customer-phone" placeholder="+998 XX XXX XX XX" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="delivery-type">🚚 Yetkazish turi:</label>
-                        <select id="delivery-type" required>
-                            <option value="">Tanlang</option>
-                            <option value="delivery">Yetkazib berish</option>
-                            <option value="pickup">Olib ketish</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group" id="address-group">
-                        <label for="customer-address">📍 Manzil:</label>
-                        <textarea id="customer-address" placeholder="Tuman, ko'cha, uy..." required></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="order-notes">📝 Izoh (ixtiyoriy):</label>
-                        <textarea id="order-notes" placeholder="Maxsus talablaringizni yozing..."></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>💳 To'lov usuli:</label>
-                        <div class="payment-options">
-                            <label class="payment-option">
-                                <input type="radio" name="payment" value="cash" checked> Naqd pul
-                            </label>
-                            <label class="payment-option">
-                                <input type="radio" name="payment" value="card"> Karta
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <div class="order-summary">
-                        <h3>📋 Buyurtma tarkibi:</h3>
-                        <div id="order-summary-items"></div>
-                        <div class="order-total-summary">
-                            <strong>Jami: <span id="order-total-amount">0</span> so'm</strong>
-                        </div>
-                    </div>
-                    
-                    <div class="form-buttons">
-                        <button type="button" class="secondary-btn" onclick="showPage('cart')">⬅️ Orqaga</button>
-                        <button type="submit" class="order-btn">✅ Tasdiqlash</button>
-                    </div>
-                </form>
             </div>
         </main>
-
-        <!-- Product Detail Modal -->
-        <div id="product-modal" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="closeModal()">&times;</span>
-                <div id="product-detail-content">
-                    <!-- Product details will be loaded here -->
-                </div>
-            </div>
-        </div>
-
-        <!-- Quantity Modal -->
-        <div id="quantity-modal" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="closeQuantityModal()">&times;</span>
-                <div id="quantity-content">
-                    <!-- Quantity selection will be loaded here -->
-                </div>
-            </div>
-        </div>
     </div>
 
     <script src="script.js"></script>
