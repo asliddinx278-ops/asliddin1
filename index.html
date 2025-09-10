@@ -3,397 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kafe Menyu</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-            color: white;
-            padding: 20px;
-        }
-        
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        
-        .header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-        
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-bottom: 30px;
-        }
-        
-        .product-card {
-            background: white;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-        }
-        
-        .product-image {
-            width: 100%;
-            height: 180px;
-            background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
-            border-radius: 10px;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 18px;
-        }
-        
-        .product-name {
-            font-weight: bold;
-            font-size: 1.3rem;
-            margin-bottom: 8px;
-            color: #333;
-        }
-        
-        .product-description {
-            color: #666;
-            font-size: 0.95rem;
-            margin-bottom: 15px;
-            line-height: 1.4;
-        }
-        
-        .product-price {
-            font-weight: bold;
-            color: #e74c3c;
-            font-size: 1.4rem;
-            margin-bottom: 20px;
-        }
-        
-        .add-to-cart {
-            width: 100%;
-            padding: 12px;
-            background: linear-gradient(45deg, #3498db, #2980b9);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1.1rem;
-            font-weight: bold;
-            transition: background 0.3s ease;
-        }
-        
-        .add-to-cart:hover {
-            background: linear-gradient(45deg, #2980b9, #3498db);
-        }
-        
-        .cart-section {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            margin-top: 30px;
-        }
-        
-        .cart-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .cart-total {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #333;
-        }
-        
-        .cart-total span {
-            color: #e74c3c;
-        }
-        
-        .order-btn {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(45deg, #27ae60, #2ecc71);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-        
-        .order-btn:hover {
-            background: linear-gradient(45deg, #219653, #27ae60);
-        }
-        
-        .order-btn:disabled {
-            background: #bdc3c7;
-            cursor: not-allowed;
-        }
-        
-        .cart-items {
-            margin-bottom: 20px;
-            max-height: 200px;
-            overflow-y: auto;
-        }
-        
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .empty-cart {
-            text-align: center;
-            color: #999;
-            padding: 20px;
-        }
-        
-        @media (max-width: 768px) {
-            .product-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .header h1 {
-                font-size: 2rem;
-            }
-        }
-    </style>
+    <title>Kafe Menyu - Web App</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <div class="header">
+    <div id="app">
+        <!-- Header -->
+        <header class="app-header">
             <h1>🍽 Kafe Menyusi</h1>
-            <p>Tanlang va buyurtma bering - tez yetkazib beramiz!</p>
-        </div>
-        
-        <div class="product-grid" id="products">
-            <!-- Mahsulotlar bu yerga dinamik ravishda qo'shiladi -->
-        </div>
-        
-        <div class="cart-section">
-            <div class="cart-header">
+            <p>Tanlang, poritsiyani belgilang va buyurtma bering!</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="app-nav">
+            <button class="nav-btn active" onclick="showPage('menu')">Menyu</button>
+            <button class="nav-btn" onclick="showPage('cart')">Savatcha (<span id="cart-count">0</span>)</button>
+            <button class="nav-btn" onclick="showPage('orders')">Buyurtmalar</button>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="app-main">
+            <!-- Menu Page -->
+            <div id="menu-page" class="page active">
+                <!-- Categories -->
+                <div class="categories-section">
+                    <h2>📋 Kategoriyalar</h2>
+                    <div class="categories-grid" id="categories-container">
+                        <!-- Categories will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Products -->
+                <div class="products-section">
+                    <h2 id="selected-category">Barcha Mahsulotlar</h2>
+                    <div class="products-grid" id="products-container">
+                        <!-- Products will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cart Page -->
+            <div id="cart-page" class="page">
                 <h2>🛒 Savatcha</h2>
-                <div class="cart-total">Jami: <span id="cart-total">0</span> so'm</div>
+                <div class="cart-items" id="cart-items">
+                    <div class="empty-cart">Savatcha bo'sh</div>
+                </div>
+                <div class="cart-summary">
+                    <div class="cart-total">
+                        <strong>Jami:</strong> <span id="cart-total">0</span> so'm
+                    </div>
+                    <button class="order-btn" onclick="showOrderForm()" id="order-btn" disabled>
+                        ✅ Buyurtma Berish
+                    </button>
+                </div>
             </div>
-            
-            <div class="cart-items" id="cart-items">
-                <div class="empty-cart">Savatcha bo'sh</div>
+
+            <!-- Orders Page -->
+            <div id="orders-page" class="page">
+                <h2>📦 Buyurtmalarim</h2>
+                <div class="orders-list" id="orders-list">
+                    <div class="empty-orders">Hozircha buyurtmalar yo'q</div>
+                </div>
             </div>
-            
-            <button class="order-btn" onclick="placeOrder()" id="order-btn" disabled>
-                🛍 Buyurtma Berish
-            </button>
+
+            <!-- Order Form Page -->
+            <div id="order-form-page" class="page">
+                <h2>📝 Buyurtma Ma'lumotlari</h2>
+                <form id="order-form" class="order-form">
+                    <div class="form-group">
+                        <label for="customer-name">👤 Ism Sharif:</label>
+                        <input type="text" id="customer-name" placeholder="Ismingizni kiriting" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="customer-phone">📞 Telefon:</label>
+                        <input type="tel" id="customer-phone" placeholder="+998 XX XXX XX XX" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="delivery-type">🚚 Yetkazish turi:</label>
+                        <select id="delivery-type" required>
+                            <option value="">Tanlang</option>
+                            <option value="delivery">Yetkazib berish</option>
+                            <option value="pickup">Olib ketish</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" id="address-group">
+                        <label for="customer-address">📍 Manzil:</label>
+                        <textarea id="customer-address" placeholder="Tuman, ko'cha, uy..." required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="order-notes">📝 Izoh (ixtiyoriy):</label>
+                        <textarea id="order-notes" placeholder="Maxsus talablaringizni yozing..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>💳 To'lov usuli:</label>
+                        <div class="payment-options">
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="cash" checked> Naqd pul
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="card"> Karta
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="order-summary">
+                        <h3>📋 Buyurtma tarkibi:</h3>
+                        <div id="order-summary-items"></div>
+                        <div class="order-total-summary">
+                            <strong>Jami: <span id="order-total-amount">0</span> so'm</strong>
+                        </div>
+                    </div>
+                    
+                    <div class="form-buttons">
+                        <button type="button" class="secondary-btn" onclick="showPage('cart')">⬅️ Orqaga</button>
+                        <button type="submit" class="order-btn">✅ Tasdiqlash</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+
+        <!-- Product Detail Modal -->
+        <div id="product-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <div id="product-detail-content">
+                    <!-- Product details will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Quantity Modal -->
+        <div id="quantity-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeQuantityModal()">&times;</span>
+                <div id="quantity-content">
+                    <!-- Quantity selection will be loaded here -->
+                </div>
+            </div>
         </div>
     </div>
 
-    <script>
-        // Telegram WebApp API
-        if (window.Telegram && window.Telegram.WebApp) {
-            window.Telegram.WebApp.ready();
-            window.Telegram.WebApp.expand();
-            window.Telegram.WebApp.setBackgroundColor('#667eea');
-            window.Telegram.WebApp.setHeaderColor('#667eea');
-        }
-
-        // Namuna mahsulotlari
-        const products = [
-            {
-                id: 1,
-                name: "Lavash Classic",
-                description: "Go'shtli lavash, pomidor, bodring, mayonez",
-                price: 25000,
-                image: "lavash"
-            },
-            {
-                id: 2,
-                name: "Cheeseburger",
-                description: "Mol go'shti, pishloq, chips, maxsus sous",
-                price: 28000,
-                image: "burger"
-            },
-            {
-                id: 3,
-                name: "Coca Cola",
-                description: "1.5L gazli ichimlik",
-                price: 12000,
-                image: "cola"
-            },
-            {
-                id: 4,
-                name: "Qora Choy",
-                description: "Tabiiy qora choy",
-                price: 5000,
-                image: "tea"
-            },
-            {
-                id: 5,
-                name: "Shirinlik Assorti",
-                description: "Napoleon, Medovik, Cheesecake",
-                price: 22000,
-                image: "dessert"
-            },
-            {
-                id: 6,
-                name: "Fri Kartoshka",
-                description: "Qovurilgan kartoshka, sous bilan",
-                price: 15000,
-                image: "fries"
-            }
-        ];
-
-        let cart = [];
-
-        // Mahsulotlarni ko'rsatish
-        function displayProducts() {
-            const container = document.getElementById('products');
-            container.innerHTML = '';
-            
-            products.forEach(product => {
-                const card = document.createElement('div');
-                card.className = 'product-card';
-                card.innerHTML = `
-                    <div class="product-image">${product.image}</div>
-                    <div class="product-name">${product.name}</div>
-                    <div class="product-description">${product.description}</div>
-                    <div class="product-price">${product.price.toLocaleString()} so'm</div>
-                    <button class="add-to-cart" onclick="addToCart(${product.id})">🛒 Qo'shish</button>
-                `;
-                container.appendChild(card);
-            });
-        }
-
-        // Savatchaga qo'shish
-        function addToCart(productId) {
-            const product = products.find(p => p.id === productId);
-            if (product) {
-                cart.push({...product});
-                updateCartDisplay();
-                showNotification(`${product.name} savatchaga qo'shildi!`);
-            }
-        }
-
-        // Savatchani yangilash
-        function updateCartDisplay() {
-            const cartItems = document.getElementById('cart-items');
-            const cartTotal = document.getElementById('cart-total');
-            const orderBtn = document.getElementById('order-btn');
-            
-            if (cart.length === 0) {
-                cartItems.innerHTML = '<div class="empty-cart">Savatcha bo\'sh</div>';
-                orderBtn.disabled = true;
-            } else {
-                cartItems.innerHTML = '';
-                cart.forEach((item, index) => {
-                    const cartItem = document.createElement('div');
-                    cartItem.className = 'cart-item';
-                    cartItem.innerHTML = `
-                        <span>${item.name}</span>
-                        <span>${item.price.toLocaleString()} so'm</span>
-                    `;
-                    cartItems.appendChild(cartItem);
-                });
-                orderBtn.disabled = false;
-            }
-            
-            const total = cart.reduce((sum, item) => sum + item.price, 0);
-            cartTotal.textContent = total.toLocaleString();
-        }
-
-        // Bildirishnoma ko'rsatish
-        function showNotification(message) {
-            // Oddiy alert o'rniga chiroyli bildirishnoma
-            const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: #27ae60;
-                color: white;
-                padding: 15px 20px;
-                border-radius: 8px;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-                z-index: 1000;
-                animation: slideIn 0.3s ease;
-            `;
-            notification.textContent = message;
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.remove();
-            }, 3000);
-        }
-
-        // Buyurtma berish
-        function placeOrder() {
-            if (cart.length === 0) {
-                showNotification('Savatcha bo\'sh!');
-                return;
-            }
-            
-            const orderData = {
-                products: cart.map(item => ({name: item.name, price: item.price})),
-                total: cart.reduce((sum, item) => sum + item.price, 0),
-                timestamp: new Date().toISOString(),
-                itemCount: cart.length
-            };
-            
-            // Telegramga ma'lumot yuborish
-            if (window.Telegram && window.Telegram.WebApp) {
-                try {
-                    window.Telegram.WebApp.sendData(JSON.stringify(orderData));
-                    showNotification('✅ Buyurtmangiz qabul qilindi!');
-                    
-                    // Savatchani tozalash
-                    cart = [];
-                    updateCartDisplay();
-                    
-                } catch (error) {
-                    console.error('Xatolik:', error);
-                    showNotification('❌ Xatolik yuz berdi!');
-                }
-            } else {
-                // Test uchun
-                alert('Buyurtma ma\'lumotlari:\n' + JSON.stringify(orderData, null, 2));
-                cart = [];
-                updateCartDisplay();
-            }
-        }
-
-        // Sahifa yuklanganda
-        window.onload = function() {
-            displayProducts();
-            updateCartDisplay();
-        };
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
