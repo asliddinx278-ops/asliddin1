@@ -1,0 +1,27 @@
+:root{
+  --bg:#ffffff;
+  --fg:#111827;
+  --primary:#f59e0b;
+  --card:#f9fafb;
+  --radius:.75rem;
+}
+.dark{
+  --bg:#111827;
+  --fg:#f9fafb;
+  --card:#1f2937;
+}
+*{box-sizing:border-box;margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;}
+body{background:var(--bg);color:var(--fg);transition:background .3s,color .3s;}
+header{display:flex;align-items:center;justify-content:space-between;padding:1rem;}
+h1{font-size:1.25rem;}
+.btn-icon{font-size:1.5rem;background:none;border:none;position:relative;}
+#badge{position:absolute;top:-4px;right:-4px;background:red;color:#fff;border-radius:50%;width:20px;height:20px;font-size:12px;display:flex;align-items:center;justify-content:center;}
+.cats{display:flex;gap:.5rem;padding:0 1rem 1rem;overflow-x:auto;}
+.cats button{flex:1 0 auto;padding:.5rem .75rem;border:1px solid var(--primary);background:none;color:var(--primary);border-radius:var(--radius);cursor:pointer;}
+.cats button.active{background:var(--primary);color:#fff;}
+.grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));padding:1rem;}
+.card{background:var(--card);border-radius:var(--radius);overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.1);}
+.card img{width:100%;height:120px;object-fit:cover;}
+.card h3{margin:.5rem;font-size:1rem;}
+.card .price{margin:0 .5rem .5rem;font-weight:bold;}
+.card .btn{width:calc(100% - 1rem);margin:0 .5rem .5rem;padding:.5rem;background:var(--primary);color:#fff;border:none;border-radius:.5rem;cursor:pointer;}
