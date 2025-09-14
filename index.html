@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>O‘zbek Taomlari</title>
+  <link rel="manifest" href="manifest.json"/>
+  <link rel="stylesheet" href="style.css"/>
+  <script src="https://telegram.org/js/telegram-web-app.js" defer></script>
+</head>
+<body class="light">
+  <!-- 1. Sahifalar -->
+  <main id="pages">
+    <section id="page-main"   class="page active">   <!-- Asosiy -->
+      <header class="glass"><h1>🍴 O‘zbek Taomlari</h1></header>
+      <div id="top5" class="top5 glass"></div>
+      <nav id="cats" class="cats"></nav>
+      <div id="menu" class="grid"></div>
+    </section>
+
+    <section id="page-search" class="page">          <!-- Qidiruv -->
+      <header class="glass"><h1>🔍 Qidiruv</h1></header>
+      <input id="searchInp" type="text" placeholder="Taom nomi...">
+      <div id="searchRes" class="grid"></div>
+    </section>
+
+    <section id="page-cart"   class="page">          <!-- Savat -->
+      <header class="glass"><h1>Savat</h1></header>
+      <div id="cartList"></div>
+      <div id="total" class="total"></div>
+      <button id="checkoutBtn" class="btn-primary w-full">Rasmiylashtirish</button>
+    </section>
+
+    <section id="page-profile" class="page">         <!-- Profil -->
+      <header class="glass"><h1>👤 Profil</h1></header>
+      <div class="profile glass">
+        <img id="avatar" src="https://i.pravatar.cc/100" alt="">
+        <h2 id="fullName">Foydalanuvchi</h2>
+        <p id="phone">+998 ** *** ** **</p>
+        <button class="btn-primary" onclick="tg.sendData('logout')">Chiqish</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- 2. Bottom Navbar -->
+  <nav class="bottom-nav glass">
+    <button class="nav-item active" data-page="main">
+      <span class="icon">🏠</span>
+      <span class="label">Asosiy</span>
+    </button>
+    <button class="nav-item" data-page="search">
+      <span class="icon">🔍</span>
+      <span class="label">Qidiruv</span>
+    </button>
+    <button class="nav-item" data-page="cart">
+      <span class="icon">🛒</span>
+      <span class="badge" id="cartBadge">0</span>
+      <span class="label">Savat</span>
+    </button>
+    <button class="nav-item" data-page="profile">
+      <span class="icon">👤</span>
+      <span class="label">Profil</span>
+    </button>
+  </nav>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>
