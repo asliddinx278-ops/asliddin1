@@ -60,7 +60,7 @@ export function renderMenu(){
     const card = document.createElement('div');
     card.className='card';
     card.innerHTML=`
-      <img src="https://api.telegram.org/file/bot<7589919425:AAG9bMalFe7ZZi434bUrdKLy_gTEvtJFCxI>/${item.file_id}" alt="${item.name}">
+      <img src="https://api.telegram.org/file/bot7589919425:AAG9bMalFe7ZZi434bUrdKLy_gTEvtJFCxI/${item.file_id}" alt="${item.name}">
       <h3>${item.name}</h3>
       <p class="price">${item.price.toLocaleString()} so‘m</p>
       <div class="porc">
